@@ -11,7 +11,7 @@ void main(void)
 	clock_t j = NULL, k = NULL, result = NULL;
 	clock_t j1 = NULL, k1 = NULL, result1 = NULL;
 	float r, r1;
-	float a1, b1, c1, a, b, c;
+	float a1, c1, a, c;
 	Node *aux = new Node();
 	Search s;
 	vector<long int> v;
@@ -146,17 +146,17 @@ void main(void)
 
 	result = j - k;
 	r = ((float)result) / CLOCKS_PER_SEC;
-	c = r + a + b;
+	c = r + a;
 
 	cout << "Tempo de busca na hash: " << r << endl;
 
 	k1 = clock();
-	s.searchTree(aux, tamanho, v);
+	s.searchTree(tree->Root(), tamanho, v);
 	j1 = clock();
 
 	result1 = j1 - k1;
 	r1 = ((float)result1) / CLOCKS_PER_SEC;
-	c1 = r1 + a1 + b1;
+	c1 = r1 + a1;
 
 	cout << "Tempo de busca na arvore: " << r1 << endl << endl;
 

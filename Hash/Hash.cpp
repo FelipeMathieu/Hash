@@ -21,22 +21,31 @@ void Hash::insert(long int e)
 	No *aux = this->elementos[this->cHash(e)];
 	No *ant = NULL;
 
-	for (aux; aux != NULL; aux = aux->prox)
+	if (aux->e == 0)
 	{
-		ant = aux;
-	}
-
-	novo->e = e;
-
-	if (ant == NULL)
-	{
-		novo->prox = this->elementos[this->cHash(e)];
-		this->elementos[this->cHash(e)] = novo;
+		aux->e = e;
+		aux->prox = NULL;
 	}
 	else
 	{
-		novo->prox = ant->prox;
-		ant->prox = novo;
+
+		for (aux; aux != NULL; aux = aux->prox)
+		{
+			ant = aux;
+		}
+
+		novo->e = e;
+
+		if (ant == NULL)
+		{
+			novo->prox = this->elementos[this->cHash(e)];
+			this->elementos[this->cHash(e)] = novo;
+		}
+		else
+		{
+			novo->prox = ant->prox;
+			ant->prox = novo;
+		}
 	}
 	//free(aux);
 }
