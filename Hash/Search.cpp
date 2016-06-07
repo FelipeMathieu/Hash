@@ -36,7 +36,7 @@ void Search::searchTree(Node *root, int size, vector<long int> v)
 
 	free(t1);
 
-	cout << "Existem " << count << " chaves do vetor2 na arvore." << endl;
+	cout << "Existem " << count << " chaves do vetor na arvore." << endl;
 }
 
 void Search::searchHash(Hash h, int size, vector<long int> v)

@@ -20,7 +20,7 @@ public:
 	
 	int cHash(int e)
 	{
-		return e % this->tamanho;
+		return (e % this->tamanho);
 	}
 	void insert(long int e);
 	void printHash();
