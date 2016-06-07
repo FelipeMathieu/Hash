@@ -15,7 +15,8 @@ void main(void)
 	Node *aux = new Node();
 	Search s;
 	vector<long int> v;
-	ofstream arvore, vetor;
+	int i = 0;
+	//ofstream arvore, vetor;
 
 	cout << "Informe o tamanho: ";
 	cin >> tamanho;
@@ -26,25 +27,35 @@ void main(void)
 	//Inserção;
 	//------------------------------------------
 
-	for (int i = 0; i < tamanho; i++)
+	while(i < tamanho)
 	{
 		elemento = (rand()*rand());
 
-		k += clock();
-		hash->insert(elemento);
-		j += clock();
+		if (elemento > 0)
+		{
+			k += clock();
+			hash->insert(elemento);
+			j += clock();
 
-		k1 += clock();
-		tree->insert(elemento);
-		j1 += clock();
+			k1 += clock();
+			tree->insert(elemento);
+			j1 += clock();
+
+			i++;
+		}
 	}
 
 	elemento = 0;
+	i = 0;
 
-	for (int i = 0; i < tamanho; i++)
+	while (i < tamanho)
 	{
 		elemento = (rand()*rand());
-		v.push_back(elemento);
+		if (elemento > 0)
+		{
+			v.push_back(elemento);
+			i++;
+		}
 	}
 
 	result = j - k;
@@ -61,7 +72,7 @@ void main(void)
 	//Ordenação e balanceamente;
 	//--------------------------------------------------------
 
-	k = NULL;
+	/*k = NULL;
 	k1 = NULL;
 	j = NULL;
 	j1 = NULL;
@@ -70,12 +81,12 @@ void main(void)
 	r = 0.0f;
 	r1 = 0.0f;
 
-	k = clock();
+	/*k = clock();
 	for (int i = 0; i < tamanho; i++)
 	{
 		if (hash->Get_IndexHash(i).size() > 1)
 		{
-			hash->quickSort(&hash->Get_IndexHash(i), 0, hash->Get_IndexHash(i).size() - 1, i);
+			hash->Get_IndexHash(i).sort(begin(), end());
 		}
 	}
 	j = clock();
@@ -92,18 +103,18 @@ void main(void)
 	r1 = ((float)result1) / CLOCKS_PER_SEC;
 	b1 = r1;
 
-	cout << "Tempo de ordenacao da hash: " << r << endl;
-	cout << "Tempo de ordenacao da arvore: " << r1 << endl << endl;
+	//cout << "Tempo de ordenacao da hash: " << r << endl;
+	cout << "Tempo de ordenacao da arvore: " << r1 << endl << endl;*/
 
-	cout << "Salvando...." << endl << endl;
+	//cout << "Salvando...." << endl << endl;
 	
-	hash->printHash();
+	//hash->printHash();
 
-	arvore.open("TreeInOrder.txt");
+	/*arvore.open("TreeInOrder.txt");
 	tree->saveTreeInOrder(aux, arvore);
-	arvore.close();
+	arvore.close();*/
 
-	vetor.open("VetorComp.txt");
+	/*vetor.open("VetorComp.txt");
 	if (vetor.is_open())
 	{
 		for (int i = 0; i < v.size(); i++)
@@ -115,7 +126,7 @@ void main(void)
 	{
 		cout << "Erro ao salvar vetor auxiliar." << endl;
 	}
-	vetor.close();
+	vetor.close();*/
 
 	//Busca
 	//-------------------------------------------------------

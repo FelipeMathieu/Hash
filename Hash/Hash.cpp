@@ -2,8 +2,13 @@
 
 Hash::Hash(int tamanho)
 {	
-	this->elementos = vector<vector<long int>>(tamanho, vector<long int>(0));
+	this->elementos = vector<No*>(tamanho);
 	this->tamanho = tamanho;
+
+	for (int i = 0; i < tamanho; i++)
+	{
+		this->elementos[this->cHash(i)] = new No();
+	}
 }
 
 Hash::~Hash()
@@ -12,11 +17,31 @@ Hash::~Hash()
 
 void Hash::insert(long int e)
 {
-	this->elementos[this->cHash(e)].push_back(e);
-	//quickSort(&this->elementos[this->cHash(e)], 0, this->elementos[this->cHash(e)].size() - 1);
+	No *novo = new No();
+	No *aux = this->elementos[this->cHash(e)];
+	No *ant = NULL;
+
+	for (aux; aux != NULL; aux = aux->prox)
+	{
+		ant = aux;
+	}
+
+	novo->e = e;
+
+	if (ant == NULL)
+	{
+		novo->prox = this->elementos[this->cHash(e)];
+		this->elementos[this->cHash(e)] = novo;
+	}
+	else
+	{
+		novo->prox = ant->prox;
+		ant->prox = novo;
+	}
+	//free(aux);
 }
 
-void Hash::printHash()
+/*void Hash::printHash()
 {
 	ofstream hash("Hash.txt");
 
@@ -43,16 +68,16 @@ void Hash::printHash()
 		cout << "Erro ao salvar Hash." << endl;
 	}
 	hash.close();
-}
+}*/
 
-void Hash::quickSort(vector<long int> *v, int left, int right, int aux) {
+/*void Hash::quickSort(list<long int> *v, int left, int right, int aux) {
 	int i = left, j = right;
 	int tmp;
-	int pivot = v->at((left + right) / 2);
+	int pivot = v->((left + right) / 2);
 
-	/* partition */
+	//partition 
 	while (i <= j) {
-		while (v->at(i) < pivot)
+		while (v-> < pivot)
 			i++;
 		while (v->at(j) > pivot)
 			j--;
@@ -65,11 +90,11 @@ void Hash::quickSort(vector<long int> *v, int left, int right, int aux) {
 		}
 	};
 
-	/* recursion */
+	// recursion 
 	if (left < j)
 		quickSort(v, left, j, aux);
 	if (i < right)
 		quickSort(v, i, right, aux);
 
 	this->elementos[aux] = *v;
-}
+}*/

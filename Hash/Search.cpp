@@ -44,18 +44,15 @@ void Search::searchHash(Hash h, int size, vector<long int> v)
 	int count = 0;
 	int aux;
 	int meio, ultimo, primeiro;
-	vector<long int> *hAux = new vector<long int>;
+	No *hAux;
 
 	for (int i = 0; i < size; i++)
 	{
 		aux = h.cHash(v.at(i));
-		*hAux = h.Get_IndexHash(aux);
-		ultimo = hAux->size() - 1;
-		meio = hAux->size() / 2;
-		primeiro = 0;
-		if (hAux->size() > 0)
+		hAux = h.Get_IndexHash(aux);
+		if (h.size(hAux) > 0)
 		{
-			while (primeiro <= ultimo)
+			/*while (primeiro <= ultimo)
 			{
 				if (hAux->at(meio) < v.at(i))
 				{
@@ -71,6 +68,18 @@ void Search::searchHash(Hash h, int size, vector<long int> v)
 					ultimo = meio - 1;
 				}
 				meio = (primeiro + ultimo) / 2;
+			}*/
+			while (hAux != NULL)
+			{
+				if (hAux->e == v.at(i))
+				{
+					count += 1;
+					break;
+				}
+				else
+				{
+					hAux = hAux->prox;
+				}
 			}
 		}
 	}
